@@ -12,8 +12,8 @@ module "gke" {
   zones      = var.zones
   network    = var.vpc
   subnetwork = var.subnet
-  #ip_range_pods              = "us-central1-01-gke-01-pods"
-  #ip_range_services          = "us-central1-01-gke-01-services"
+  ip_range_pods              = var.pod_cidr_range
+  ip_range_services          = var.service_cidr_range
   http_load_balancing        = false
   horizontal_pod_autoscaling = true
   network_policy             = true
