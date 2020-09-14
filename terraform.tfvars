@@ -1,5 +1,5 @@
 project_id = "booth-playground"
-prefix     = "booth-anthos"
+prefix     = "booth-anthos-terraform"
 region     = "us-central1"
 zones      = ["us-central1-c"]
 vpc        = "default"

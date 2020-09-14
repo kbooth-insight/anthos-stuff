@@ -2,7 +2,7 @@ set -ex
 
 # asmctl says to export these
 export PROJECT_ID="booth-playground"
-export PROJECT_NUMBER=$(gcloud projects describe booth-playground --format="value(parent.id)")
+export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} --format="value(parent.id)")
 export ENVIRONMENT_PROJECT_NUMBER=$PROJECT_NUMBER
 export PROJECT_LOCATION="us-central1-c"
 export CLUSTER_NAME="booth-asm-test"
