@@ -1,3 +1,5 @@
 **/*.tar.gz*
 istio-*/
 .vscode
+.terraform
+**/*.tfstate*
