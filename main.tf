@@ -32,7 +32,7 @@ module "gke" {
       auto_upgrade    = true
       # service_account    = "project-service-account@${var.project_id}.iam.gserviceaccount.com"
       preemptible        = false
-      initial_node_count = 80
+      initial_node_count = 2
     },
   ]
 
