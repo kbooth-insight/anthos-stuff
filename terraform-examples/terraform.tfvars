@@ -1,0 +1,8 @@
+project_id = "booth-playground"
+prefix     = "booth-anthos-terraform"
+region     = "us-central1"
+zones      = ["us-central1-c"]
+vpc        = "default"
+subnet     = "default"
+pod_cidr_range = null
+services_cidr_range = null
