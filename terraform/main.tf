@@ -8,27 +8,41 @@ data google_project this {
 
 }
 
-module "gke" {
-  source     = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster/"
-  project_id        = var.project_id
-  name              = "${var.prefix}-gke"
-  regional          = false
-  region            = var.region
-  zones             = var.zones
-  network           = var.vpc
-  subnetwork        = var.subnet
-  ip_range_pods     = var.pod_cidr_range
-  ip_range_services = var.service_cidr_range
-  service_account   = "create"
-  initial_node_count = 2
+resource random_pet sa_suffix {
+  
 }
 
+module "gke" {
+  source     = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
+  project_id              = var.project_id
+  name                    = "${var.prefix}-gke"
+  regional                = false
+  region                  = var.region
+  zones                   = var.zones
+  release_channel         = "REGULAR"
+  network                 = var.vpc
+  subnetwork              = var.subnet
+  ip_range_pods           = var.pod_cidr_range
+  ip_range_services       = var.services_cidr_range
+  network_policy          = false
+  cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.this.number}" }
+  node_pools = [
+    {
+      name         = "asm-node-pool"
+      autoscaling  = false
+      auto_upgrade = true
+      # ASM requires minimum 4 nodes and e2-standard-4
+      node_count   = 4
+      machine_type = "e2-standard-4"
+    },
+  ]
+}
 
-module "hub" {
-  source           = "terraform-google-modules/kubernetes-engine/google//modules/hub"
-
-  project_id       = var.project_id
+module "asm" {
+  source           = "terraform-google-modules/kubernetes-engine/google//modules/asm"
   cluster_name     = module.gke.name
-  location         = module.gke.location
   cluster_endpoint = module.gke.endpoint
+  project_id       = var.project_id
+  location         = module.gke.location
+  gke_hub_sa_name = "test-hub"
 }

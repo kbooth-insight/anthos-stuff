@@ -5,4 +5,4 @@ zones      = ["us-central1-c"]
 vpc        = "default"
 subnet     = "default"
 pod_cidr_range = null
-service_cidr_range = null
+services_cidr_range = null

@@ -3,3 +3,4 @@ istio-*/
 .vscode
 .terraform
 **/*.tfstate*
+asm-dir

@@ -1,3 +1,3 @@
-output project_number {
-    value = data.google_project.this.*
+output gke {
+    value = module.gke.*
 }
