@@ -20,6 +20,7 @@ module "gke" {
   ip_range_pods     = var.pod_cidr_range
   ip_range_services = var.service_cidr_range
   service_account   = "create"
+  remove_default_node_pool = true
   initial_node_count = 2
 }
 
