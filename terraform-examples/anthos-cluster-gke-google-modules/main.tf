@@ -28,7 +28,7 @@ module "gke" {
   cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.this.number}" }
   node_pools = [
     {
-      name         = "asm-node-pool"
+      name         = "default-node-pool"
       autoscaling  = false
       auto_upgrade = true
       # ASM requires minimum 4 nodes and e2-standard-4
