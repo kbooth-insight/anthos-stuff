@@ -1,3 +1,3 @@
 output gke {
-    value = module.gke.*
+  value = module.gke.*
 }

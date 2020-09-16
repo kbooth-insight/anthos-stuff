@@ -9,11 +9,11 @@ data google_project this {
 }
 
 resource random_pet sa_suffix {
-  
+
 }
 
 module "gke" {
-  source     = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
+  source                  = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
   project_id              = var.project_id
   name                    = "${var.prefix}-gke"
   regional                = false
@@ -44,7 +44,7 @@ module "asm" {
   cluster_endpoint = module.gke.endpoint
   project_id       = var.project_id
   location         = module.gke.location
-  gke_hub_sa_name = "${var.prefix}-sa"
+  gke_hub_sa_name  = "${var.prefix}-sa"
 }
 
 module "acm" {
